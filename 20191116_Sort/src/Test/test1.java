@@ -29,7 +29,7 @@ public class test1 {
         int[] array2 = {0, 0, 0, 0, 0, 0};
         System.arraycopy(array1, 2, array2, 3, 2);
         for (int i : array2)
-            System.out.println(i);
+            System.out.print(i);
 
     }
 }
