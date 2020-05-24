@@ -32,22 +32,29 @@ public class App {
 
                 Connection connection = ServiceDB.getConnection();
 
-                String sql = "INSERT INTO `product` (`product_cod`, `category_name`, `product_name`, " +
+                String sql1 = "INSERT IGNORE INTO `product` (`product_cod`, `category_name`, `product_name`, " +
                         "`quantity`,`UM`) VALUES (?, ?, ?, ?, ?);";
 
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql1);
                 preparedStatement.setString(1, codProdus);
                 preparedStatement.setString(2, categorie);
                 preparedStatement.setString(3, denumireProdus);
-                preparedStatement.setInt(4, (int) cantitate);
+                preparedStatement.setDouble(4,  cantitate);
                 preparedStatement.setString(5, unitateDeMasura);
                 // preparedStatement.setString(6, notes);
                 preparedStatement.executeUpdate();
+                preparedStatement.closeOnCompletion();
 
-                String sql2 = "INSERT INTO `store` (`store_cod`,`store_name`) VALUES (?, ?);";
-                preparedStatement.setString(1, codMagazie);
-                preparedStatement.setString(2, numeCodMagazie);
-                preparedStatement.executeUpdate(sql2);
+                String sql2 = "INSERT  IGNORE INTO `store` (`store_code`,`store_name`) VALUES (?, ?);";
+                PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+                preparedStatement2.setString(1, codMagazie);
+                preparedStatement2.setString(2, numeCodMagazie);
+                preparedStatement2.executeUpdate();
+
+                String sql3 = "INSERT  IGNORE INTO `category` (`category_name`) VALUES (?);";
+                PreparedStatement preparedStatement3 = connection.prepareStatement(sql3);
+                preparedStatement3.setString(1, categorie);
+                preparedStatement3.executeUpdate();
 
             }
         } catch (SQLException e) {
