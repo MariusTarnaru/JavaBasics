@@ -1,6 +1,5 @@
 package ArrayList;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,12 +25,17 @@ public class Ex1 {
    //Afișați avionul de pe indexul 3
         System.out.println("Avionul de pe indexul 3 este: " + aeroplane.get(3));
    //Înlocuiţi un avion cu altul nou.
-        aeroplane.set(2, "Lockheed");// se poate folosi si aeroplane.add(..index..,..element..)
+        aeroplane.set(0, "Lockheed");// se poate folosi si aeroplane.add(..index..,..element..)
         System.out.println("Avionul de pe indexul 0 \nce a inlocuit Boing este: " + aeroplane.get(0));
         System.out.println("ArrayList-ul devine: " + aeroplane);
         System.out.println("Colectia ramane neschimbata: " + avioane);
     //Verificați dacă lista de avioane conține un anumit avion.
-
+        for (Object obj : aeroplane) {
+            if (obj.toString().equals("Bubu")){
+                System.out.println("In lista exista avionul: Bubu");
+            }
+        }
+        System.out.println("In lista nu exista avionul cautat !");
 
     }
 }
